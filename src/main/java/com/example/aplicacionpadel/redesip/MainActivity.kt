@@ -1,21 +1,19 @@
 package com.example.aplicacionpadel.redesip
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import com.example.aplicacionpadel.redesip.act.menu.BebidasFragment
 import com.example.aplicacionpadel.redesip.act.menu.menuActivity
-import com.example.aplicacionpadel.redesip.act.other.OtherActivity
+import com.example.aplicacionpadel.redesip.act.other.BlankFragment
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         buttonMenu.setOnClickListener { intentButtonMenu()
         }
 
-        buttonOther.setOnClickListener { intentButtonOther() }
+        buttonOther.setOnClickListener { intentButtonOther()
+        }
 
     }
 
@@ -35,9 +34,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentMenu)
     }
 
-    private fun intentButtonOther() {
-        val intentOther = Intent(this, OtherActivity::class.java)
-        startActivity(intentOther)
+    fun intentButtonOther() {
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            add<BlankFragment>(R.id.fragmentContainer)
+        }
     }
 
 }

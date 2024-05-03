@@ -5,35 +5,43 @@ class ProductosProvider {
         val productosList = listOf<Productos>(
             Productos(
                 "Chocolatada",
-                "Padel"
+                "Padel",
+                2.0
             ),
             Productos(
                 "Nestea",
-                "Padel"
+                "Padel",
+                1.0
             ),
             Productos(
                 "Agua",
-                "Padel"
+                "Padel",
+                1.2
             ),
             Productos(
                 "Prime",
-                "Padel"
+                "Padel",
+                3.0
             ),
             Productos(
                 "Juego de naranja",
-                "Padel"
+                "Padel",
+                4.0
             ),
             Productos(
                 "Juego de piña",
-                "Padel"
+                "Padel",
+                2.0
             ),
             Productos(
                 "Jugo de Uvas",
-                "Padel"
+                "Padel",
+                1.5
             ),
             Productos(
                 "Mojito",
-                "Padel"
+                "Padel",
+                4.0
             )
         )
     }

@@ -1,19 +1,13 @@
 package com.example.aplicacionpadel.redesip.act.menu.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.datastore.dataStore
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aplicacionpadel.redesip.R
+import com.example.aplicacionpadel.redesip.act.carrito.ItemCompra
 import com.example.aplicacionpadel.redesip.act.menu.Productos
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-val Context.dataStore by preferencesDataStore(name = "COMPRA_PRODUCTOS")
-class ProductosAdapter(private val productosList:List<Productos>) : RecyclerView.Adapter<ProductosViewHolder>(){
+class ProductosAdapter(private val productosList: List<Productos>) : RecyclerView.Adapter<ProductosViewHolder>(){
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ProductosViewHolder {
         val layoutInflater = LayoutInflater.from(p0.context)
@@ -39,12 +33,7 @@ class ProductosAdapter(private val productosList:List<Productos>) : RecyclerView
             }
         }
 
-        holder.btnSave.setOnClickListener {
-            saveValues(holder.name.text.toString(), holder.cantidadActual.toString())
-        }
-    }
 
-    private fun saveValues(name: String, cantidad: String) {
     }
 
     private fun cambioCantidad(holder: ProductosViewHolder){
