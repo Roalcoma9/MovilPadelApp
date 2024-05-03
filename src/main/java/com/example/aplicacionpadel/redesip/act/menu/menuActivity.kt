@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aplicacionpadel.redesip.MainActivity
@@ -16,26 +17,47 @@ import com.example.aplicacionpadel.redesip.R
 import com.example.aplicacionpadel.redesip.act.carrito.ItemCompra
 import com.example.aplicacionpadel.redesip.act.menu.adapter.ProductosAdapter
 import com.example.aplicacionpadel.redesip.databinding.ActivityMenuBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class menuActivity : AppCompatActivity() {
 
     private var cantidadActual: Int = 0
-    private lateinit var binding: ActivityMenuBinding
+    lateinit var navegation: BottomNavigationView
 
+    private val mOnNavMenu = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.fragmentBebidas -> {
+                supportFragmentManager.commit {
+                    replace<BebidasFragment>(R.id.fragmentContainerBebidas)
+                    setReorderingAllowed(true)
+                }
+                return@OnNavigationItemSelectedListener true
+            }
+
+            R.id.fragmentComidas -> {
+                supportFragmentManager.commit {
+                    replace<ComidasFragment>(R.id.fragmentContainerBebidas)
+                    setReorderingAllowed(true)
+                }
+                return@OnNavigationItemSelectedListener true
+            }
+
+
+        }
+        false
+    }
 
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMenuBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu)
+        abrirFragmentBebida()
+        navegation = findViewById(R.id.navMenu)
+        navegation.setOnNavigationItemSelectedListener(mOnNavMenu)
         val botonRegreso = findViewById<Button>(R.id.btnRegresoMenu)
-        val botonBebida = findViewById<Button>(R.id.btnFragmentBebidas)
-        val botonComida = findViewById<Button>(R.id.btnFragmentComidas)
         botonRegreso.setOnClickListener { intentButtonMenu() }
-        botonBebida.setOnClickListener { abrirFragmentBebida() }
-        botonComida.setOnClickListener { abrirFragmentComidas() }
     }
 
     fun intentButtonMenu() {
@@ -46,16 +68,8 @@ class menuActivity : AppCompatActivity() {
 
     fun abrirFragmentBebida() {
         supportFragmentManager.commit {
+            replace<BebidasFragment>(R.id.fragmentContainerBebidas)
             setReorderingAllowed(true)
-            add<BebidasFragment>(R.id.fragmentContainerBebidas)
-        }
-    }
-
-    fun abrirFragmentComidas() {
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<ComidasFragment>(R.id.fragmentContainerComidas)
-
         }
     }
 }
